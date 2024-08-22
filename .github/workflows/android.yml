@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +21,12 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Upload APKs
+      uses: actions/upload-artifact@v3
+      with:
+        name: apk-files
+        path: app/build/outputs/apk/
