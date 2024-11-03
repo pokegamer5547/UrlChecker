@@ -34,7 +34,7 @@
     <string name="deviceDefault">Geräte-Standard</string>
     <string name="next">Weiter</string>
     <string name="back">Zurück</string>
-    <string name="json_edit">Erweiterter Editor</string>
+    <string name="json_edit">JSON Editor</string>
     <string name="shortcut_checkClipboard">URLs aus der Zwischenablage prüfen</string>
     <string name="txt_sample">Tippen Sie zum Testen auf folgenden Link:</string>
     <string name="a_modules">Module</string>
@@ -56,7 +56,7 @@
     <string name="translators">T</string>
     <string name="txt_info">Diese App fungiert als Zwischenschritt beim Öffnen angeklickter Links. Wenn diese App zum Öffnen ausgewählt wurde, wird ein Dialog mit einigen Informationen über den Link angezeigt. Über den Module-Button unten können Sie alle verfügbaren Module prüfen und konfigurieren.</string>
     <string name="menu_toggleDecorations">Alle Titel umschalten</string>
-    <string name="json_desc">[Beta-Funktion] Dies ist ein erweiterter Editor, der Inhalt muss gültiges JSON sein. Sie können die Schaltfläche oben rechts drücken, um das JSON zu formatieren und zu validieren.</string>
+    <string name="json_desc">Json Editor: Der Inhalt muss gültiges JSON sein. Sie können die Schaltfläche oben rechts drücken, um das JSON zu formatieren und zu validieren.</string>
     <string name="mPttrn_name">Muster (RegEx)</string>
     <string name="mOpen_name">Öffnen und Teilen</string>
     <string name="mOpen_ctabs">Benutzerdefinierte Tabs:</string>
@@ -223,7 +223,6 @@
 \n- Öffnen-Button: Tippen Sie auf den Namen der App um den Link in dieser zu öffnen. Wenn ein Link mit mehreren Apps geöffnet werden kann, wird ein Pfeil zur Auswahl angezeigt.
 \n- Kopieren-Button: Tippen Sie auf diesen Button um den Link zu kopieren.
 \n- Teilen-Button: Tippen Sie auf diesen Button um den Link zu teilen.</string>
-    <string name="mStatus_autoCheck">URLs, die diesem Muster entsprechen, automatisch prüfen. Warnung! Es ist ratsam ein restriktives Muster zu benutzen (nicht .* für alle Links), da sonst böswillige Server Ihre IP-Adresse loggen könnten.</string>
     <string name="mVT_cancel">Abbrechen</string>
     <string name="mVT_scanning">Scan läuft…</string>
     <string name="mHist_desc">Wenn eine URL verändert wird (manuell oder von anderen Modulen), können Sie hiermit Änderungen sehen und rückgängig machen.</string>
@@ -240,10 +239,10 @@
 \nVielen Dank an PabloOQ für die Idee und die ursprüngliche Implementierung!
 \n
 \nDieses Modul wurde durch das Modul \'URI-Teile\' ersetzt</string>
-    <string name="mHosts_desc">Dieses Modul kategorisiert Hosts anhand manueller Konfiguration oder einer hosts-artigen Datei aus dem Internet. Sie können es zur Warnung vor gefährlichen oder besonderen Seiten benutzen. Die integrierte Konfiguration benutzt StevenBlacks Hosts (Adware/Malware, Fake News, Glücksspiel und Inhalte für Erwachsene) von https://github.com/StevenBlack/hosts</string>
+    <string name="mHosts_desc">Dieses Modul kategorisiert Hosts anhand manueller Konfiguration oder einer hosts-artigen Datei aus dem Internet. Sie können es zur Warnung vor gefährlichen oder besonderen Seiten benutzen. Die integrierte Konfiguration benutzt StevenBlacks Hosts (Adware/Malware, Fake News, Glücksspiel und Inhalte für Erwachsene) von https://github.com/StevenBlack/hosts. Hinweis: Subdomains werden auch erkannt, sodass \'x.y.z\' und \'y.z\' dem Eintrag \'y.z\' zugeordnet werden.</string>
     <string name="mHosts_parseError">Hosts URL kann nicht verarbeitet werden</string>
     <string name="mHosts_editor">Hosts-Konfiguration. Format: Liste von Objekten, bei denen der Schlüssel die Host-Kategorie ist und der Wert folgende optionale Felder enthält:
-\n- file: (Datei) Eine URL zu einer Hosts-Datei zum Download. Es werden alle validen Hosts der Datei hinzugefügt.
+\n- file: (Datei) Eine URL zu einer Hosts-Datei zum Download. Es werden alle validen Hosts der Datei hinzugefügt. Die Zeilen sollten der Hosts-Syntax folgen (\'IP Host [Alias …]\'), aber nur \'Host\' ist ausreichend.
 \n- hosts: Eine einfache Liste der Hosts (strings).
 \n- color: Die Farbe der Kategorie. Ein Android-Farb-String (#AARRGGBB, #RRGGBB oder ein gültiger Name einer Farbe). Standardmäßig \'danger\'/Gefahr Rot.
 \n- replace: \'false\'/Falsch, damit bestehende Hosts nicht ersetzt werden, standardmäßig \'true\'/wahr. Beachten Sie, dass Objekte von oben nach unten ausgewertet werden.
@@ -315,5 +314,4 @@
     <string name="normal">Normal</string>
     <string name="big">Groß</string>
     <string name="mOpen_iconSize">Symbolgröße</string>
-    <string name="mInput_alwaysEdit">Bearbeitungsmodus dauerhaft aktivieren</string>
 </resources>

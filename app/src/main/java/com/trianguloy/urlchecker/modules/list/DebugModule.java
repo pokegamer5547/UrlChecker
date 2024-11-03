@@ -6,7 +6,6 @@ import android.content.ComponentName;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.trianguloy.urlchecker.R;
@@ -60,9 +59,7 @@ public class DebugModule extends AModuleData {
 class DebugDialog extends AModuleDialog {
 
     public static final String SEPARATOR = "";
-    private Button showData;
     private TextView data;
-    private UrlData urlData;
 
     public DebugDialog(MainDialog dialog) {
         super(dialog);
@@ -75,14 +72,11 @@ class DebugDialog extends AModuleDialog {
 
     @Override
     public void onInitialize(View views) {
-        showData = views.findViewById(R.id.showData);
         data = views.findViewById(R.id.data);
-
-        showData.setOnClickListener(v -> showData());
+        views.findViewById(R.id.showData).setOnClickListener(v -> showData());
     }
 
     private void showData() {
-        showData.setVisibility(View.GONE);
         data.setVisibility(View.VISIBLE);
         // data to display
         data.setText(String.join("\n", List.of(
@@ -92,7 +86,7 @@ class DebugDialog extends AModuleDialog {
                 SEPARATOR,
 
                 "queryIntentActivities:",
-                IntentApp.getOtherPackages(UrlUtils.getViewIntent(urlData.url, null), getActivity()).toString(),
+                IntentApp.getOtherPackages(UrlUtils.getViewIntent(getUrl(), null), getActivity()).toString(),
 
                 SEPARATOR,
 
@@ -100,14 +94,14 @@ class DebugDialog extends AModuleDialog {
                 getActivity().getPackageManager().queryIntentActivityOptions(
                         new ComponentName(getActivity(), MainDialog.class.getName()),
                         null,
-                        UrlUtils.getViewIntent(urlData.url, null),
+                        UrlUtils.getViewIntent(getUrl(), null),
                         Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PackageManager.MATCH_ALL : 0
                 ).toString(),
 
                 SEPARATOR,
 
                 "UrlData:",
-                urlData.toString(),
+                getUrlData().toString(),
 
                 SEPARATOR,
 
@@ -124,12 +118,6 @@ class DebugDialog extends AModuleDialog {
     @Override
     public void onPrepareUrl(UrlData urlData) {
         data.setVisibility(View.GONE);
-        showData.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onDisplayUrl(UrlData urlData) {
-        this.urlData = urlData;
     }
 }
 
