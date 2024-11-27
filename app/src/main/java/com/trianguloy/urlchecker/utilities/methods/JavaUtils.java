@@ -1,5 +1,6 @@
 package com.trianguloy.urlchecker.utilities.methods;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +26,15 @@ public interface JavaUtils {
         return list;
     }
 
+    /** returns list.map{ mapper(it) } but using <24 api android java */
+    static <I, O> List<O> mapEach(List<I> list, Function<I, O> mapper) {
+        var result = new ArrayList<O>();
+        for (var i : list) {
+            result.add(mapper.apply(i));
+        }
+        return result;
+    }
+
     /**
      * Converts a string into a json object, returns empty on failure
      */
@@ -34,6 +44,44 @@ public interface JavaUtils {
         } catch (JSONException e) {
             // invalid catalog, return empty
             return new JSONObject();
+        }
+    }
+
+    /**
+     * Given an {@link Object} gotten from {@link JSONObject#get(String)} and a {@link Class},
+     * it will check if the object is either a value or an array, of said class and return it
+     * as a list.
+     *
+     * @throws ClassCastException if the values are not from type {@code T}
+     */
+    static <T> List<T> getArrayOrElement(Object object, Class<T> clazz) throws ClassCastException, JSONException {
+        List<T> result = new ArrayList<T>();
+
+        if (object instanceof JSONArray array) {
+            // List
+            for (int i = 0; i < array.length(); i++) {
+                result.add(getAsOrCrash(array.get(i), clazz));
+            }
+        } else {
+            // Value
+            result.add(getAsOrCrash(object, clazz));
+        }
+
+        return result;
+    }
+
+    // I don't like it but it wasn't throwing an exception when wrongly casting,
+    // probably due to type casting
+    /**
+     * Returns the value as type {@code T} if possible, if not, it throws an exception
+     *
+     * @throws ClassCastException if the values are not from type {@code T}
+     */
+    static <T> T getAsOrCrash(Object object, Class<T> clazz) throws ClassCastException{
+        if (clazz.isInstance(object)) {
+            return (T) object;
+        } else {
+            throw new ClassCastException("Not of class " + clazz.getName());
         }
     }
 
